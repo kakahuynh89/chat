@@ -1,0 +1,35 @@
+doctype 5
+html
+  head
+    link(href='/stylesheets/mapchat.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(type='text/javascript', src='http://maps.googleapis.com/maps/api/js?key=AIzaSyB5vOZpvFDa5pAoe9ZT7bngasYff7YwHW0&sensor=true')
+    script(type='text/javascript', src='/javascripts/googlemaps.js') 
+    script(type='text/javascript', src='/javascripts/mapchat.js')
+      
+  body
+    #menu
+      strong Map Chat Project
+    #contrainer
+      #map_canvas
+      #contrainer_nicknames
+        #title_nicknames                
+          b Who is online:
+        #nicknames
+    #chat
+      #nickname
+        form.wrap#set-nickname
+          p Please type in your nickname and press enter.
+          input#nick(value='Enter your nickname here')
+          p#nickname-err Nickname already in use          
+      #connecting
+        .wrap Connecting to socket.io server
+    #messages
+      #title_messages
+        p Public Channel            
+      #lines        
+    #bottom_toolbar
+      form#send-message
+        input#message(value='Enter your message here')
+        button Send

@@ -1,0 +1,467 @@
+/*Map Style*/
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+      
+#menu{    
+    
+    left:0px;
+    height:30px;
+    width:100%;    
+    background: blue;
+    top: 0px;
+    z-index: 100;
+    opacity:.8;
+    filter: alpha(opacity=75); 
+    -moz-opacity: 0.8;
+
+}
+#menu #menu_content{
+     height: 30px;
+     color:#fff;
+     text-align: left;
+     padding: 0px 0px 0px 5px;
+     display: table-cell;
+     vertical-align: middle;
+}
+
+#contrainer {
+     width: 100%;     
+     /*height: 100%;*/
+     position: absolute;
+     top: 30px;
+     bottom: 50px;
+     
+}
+#contrainer_nicknames {
+ /* float: right;*/
+  width: 190px;
+  border: 1px solid green;  
+ /* background: #ccc;
+  /*padding: 2px 4px 4px;*/
+  font: 11px Helvetica;  
+  position: absolute;
+  top:10px;
+  bottom: 10px;
+  right:5px;
+  /*height: 80%;*/
+  
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+#title_nicknames{
+  width: 190px;
+  background: green;
+  color: #fff;
+  height: 20px;
+  display : table-cell; 
+  vertical-align: middle;
+ border: 1px solid green;
+  -moz-border-radius: 10px;
+ border-top-left-radius: 9px;
+ border-top-right-radius: 9px;
+}
+
+#nicknames {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  bottom: 5px;
+  left: 0px;
+  padding: 5px;
+
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#nicknames:-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#nicknames:-webkit-scrollbar-button:start:decrement,
+#nicknames :-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 10px;
+}
+#nicknames:-webkit-scrollbar-button:vertical:increment {
+  background-color: #fff;
+}
+#nicknames:-webkit-scrollbar-track-piece {
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+}
+#nicknames:-webkit-scrollbar-thumb:vertical {
+  height: 50px;
+  background-color: #ccc;
+  -webkit-border-radius: 3px;
+}
+#nicknames:-webkit-scrollbar-thumb:horizontal {
+  width: 50px;
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+}
+
+#map_canvas { 
+     border: 1px solid #ccc;
+    /* float: left;*/
+     /*height: 100%;*/
+     /*width:  76.5%;*/     
+     left:5px;
+     right: 200px;
+     top:10px;
+     bottom: 10px;
+     position: absolute;
+     -moz-border-radius: 10px;
+     border-radius: 10px;
+     /*top: 30px;
+     bottom: 30px;*/ 
+     
+}
+
+#bottom_toolbar{
+    /*color:#FFFFFF;*/
+    left:0px;
+    height:50px;
+    width:100%;
+    background:#282828;
+    /* Text Always Center */
+    line-height:30px;
+    /* position on bottom */
+    bottom: 0px;
+        /* Thay: bottom: 0px; = top: 0px; neu muon o tren dau trang */
+    position: absolute;
+    z-index: 100;
+    /* transparent background */
+    
+    opacity:.75;
+    filter: alpha(opacity=75); 
+    -moz-opacity: 0.75;
+    
+}
+
+/*End Map Style*/
+
+#chat,
+#nickname,
+#messages {
+/*  width: 600px;*/
+}
+#chat {
+/*
+  position: relative;
+  border: 1px solid #ccc;
+
+    position: absolute;
+    z-index: 100;
+    top: 80px ;
+    left: 50px ;
+*/
+
+}
+#nickname,
+#connecting {
+/*  
+  position: absolute;
+  z-index: 100;
+  left: 200px;
+  top: 150px;
+  bottom: 150px;
+  right:200px;
+  background: rgba(0, 148, 255, 0.7);
+  text-align: center;
+ /* width: 600px;*/
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ height: 300px;
+ margin-top: -150px;/* height/2 */
+ width: 500px;
+ margin-left: -250px; /* width/2 */
+ text-align: center;
+ display: table-cell;
+ vertical-align: middle;
+ font: 16px Georgia;
+ background: rgba(0, 148, 255, 0.8);
+  color: green;
+  font-weight: bold;
+ /* display: block;*/
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+#nickname .wrap,
+#connecting .wrap {
+ padding-top: 75px;
+}
+#nickname input {
+  font: normal normal normal 100% Arial, sans-serif;
+  border: 1px solid #999;
+  height: 30px;
+  padding: 5px 10px 5px 10px;
+ /* font: 100% Georgia;*/
+  font-weight: bold;
+  color: #666;
+  line-height: 30px;
+  vertical-align: middle;
+  width: 50%;
+}
+/*
+#nickname input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font: 20px Georgia;
+  font-weight: bold;
+  color: #666;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+#nickname input:focus {
+
+  border: 2px solid #999;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+*/
+#nickname #nickname-err {
+  color: #8b0000;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.connected #connecting {
+  display: none;
+}
+.nickname-set #nickname {
+  display: none;
+}
+#messages {
+
+/*  color: #fff;*/
+  height: 380px;
+  width: 600px;
+  position: fixed;
+  left: 10px;
+  bottom: 60px; 
+  /*background: #282828;*/
+/*
+  background: #fff;
+  position: fixed;
+  left: 10px;
+  bottom: 60px;  
+  border: 2px solid #999;
+  border-top-left-radius: 9px;
+ border-top-right-radius: 9px;
+*/
+  /* transparent background */
+/*
+    opacity:.75;
+    filter: alpha(opacity=75); 
+    -moz-opacity: 0.75;
+*/
+}
+#title_messages{
+  height: 30px;
+  width: 600px;
+  background: green;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  padding-left: 5px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px; 
+}
+
+#messages em {
+  text-shadow: 0 1px 0 red;
+  color: red;
+}
+#messages p {
+  color: blue;
+  padding: 0;
+  margin: 0;
+  font: 12px Helvetica, Arial;
+  padding: 5px 10px;
+}
+#messages p b {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+/*
+#messages p:nth-child(even) {
+  background: #fafafa;
+}
+/*
+#messages #nicknames {
+  background: #ccc;
+  padding: 2px 4px 4px;
+  font: 11px Helvetica;
+}
+#messages #nicknames span {
+  color: #000;
+}
+#messages #nicknames b {
+  display: inline-block;
+  color: #fff;
+  background: #999;
+  padding: 3px 6px;
+  margin-right: 5px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-shadow: 0 1px 0 #666;
+}
+*/
+
+#messages #lines {
+  border: 1px solid green;
+  background: #fff;
+  height: 350px;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#messages #lines::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+#messages #lines::-webkit-scrollbar-button:start:decrement,
+#messages #lines ::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 10px;
+}
+#messages #lines::-webkit-scrollbar-button:vertical:increment {
+  background-color: #fff;
+}
+#messages #lines::-webkit-scrollbar-track-piece {
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+}
+#messages #lines::-webkit-scrollbar-thumb:vertical {
+  height: 50px;
+  background-color: #ccc;
+  -webkit-border-radius: 3px;
+}
+#messages #lines::-webkit-scrollbar-thumb:horizontal {
+  width: 50px;
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+}
+#send-message {
+  /*background: #282828;*/
+  width: 600px; 
+  position: absolute;
+  display : table-cell;
+  vertical-align:middle;
+  left: 10px;
+  top: 5px;
+
+}
+#send-message input {
+  border: none;
+ /* line-height: 30px;*/  
+  padding: 5px 5px 5px 5px;
+  font: 20px Georgia;
+  font-weight: bold;
+  color: #111;
+  vertical-align: middle;
+  width: 520px;
+  
+}
+#send-message input:focus {
+  outline: 0;
+}
+#send-message button {
+  position: relative;  
+  top: 0px;
+  left: 10px;
+}
+button {
+/*
+  margin: 0;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  display: inline-block;
+  text-decoration: none;
+  background: #43a1f7;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #43a1f7), color-stop(1, #377ad0));
+  background: -webkit-linear-gradient(top, #43a1f7 0%, #377ad0 100%);
+  background: -moz-linear-gradient(top, #43a1f7 0%, #377ad0 100%);
+  background: linear-gradient(top, #43a1f7 0%, #377ad0 100%);
+*/
+  border: 1px solid #2e70c4;
+  display: inline-block;
+  text-decoration: none;
+  background: rgba(0, 148, 255, 1);
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  color: #fff;
+  font-family: "lucida grande", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 7px 12px 7px 12px; /*top-right-bottom-left*/
+  text-align: center;
+  text-shadow: 0 -1px 1px #2d6dc0;
+
+}
+button:hover,
+button.hover {
+  /*background: darker;*/
+  background: darker;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #43a1f7), color-stop(1, #2e70c4));
+  background: -webkit-linear-gradient(top, #43a1f7 0%, #2e70c4 100%);
+  background: -moz-linear-gradient(top, #43a1f7 0%, #2e70c4 100%);
+  background: linear-gradient(top, #43a1f7 0%, #2e70c4 100%);
+  border: 1px solid #2e70c4;
+  cursor: pointer;
+  text-shadow: 0 -1px 1px #2c6bbb;
+}
+button:active,
+button.active {
+  background: #2e70c4;
+  border: 1px solid #2e70c4;
+  border-bottom: 1px solid #2861aa;
+  text-shadow: 0 -1px 1px #2b67b5;
+}
+button:focus,
+button.focus {
+  outline: none;  
+  -webkit-box-shadow: 0 1px 0 0 rgba(255,255,255,0.40), 0 0 4px 0 #377ad0;
+  -moz-box-shadow: 0 1px 0 0 rgba(255,255,255,0.40), 0 0 4px 0 #377ad0;
+  box-shadow: 0 1px 0 0 rgba(255,255,255,0.40), 0 0 4px 0 #377ad0;
+}
+
+.idleField{
+  font: normal normal normal 100% Arial, sans-serif;
+  border: 1px solid #BFC3C7;
+  background-color: #F5F6F9;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f6f9), to(#f9fbfd));
+  background-image: -webkit-linear-gradient(top, #f5f6f9, #f9fbfd);
+  background-image: -moz-linear-gradient(top, #f5f6f9, #f9fbfd);
+  background-image: -ms-linear-gradient(top, #f5f6f9, #f9fbfd);
+  background-image: -o-linear-gradient(top, #f5f6f9, #f9fbfd);
+  background-image: linear-gradient(top, #f5f6f9, #f9fbfd);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f5f6f9', EndColorStr='#f9fbfd');
+ /* -moz-box-shadow: 0px 1px 0px white;
+  -webkit-box-shadow: 0px 1px 0px white;
+ /* box-shadow: 0px 1px 0px white;*/
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 4px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  color:#111;
+}  
+.focusField{
+     border:solid 1px blue;
+     background: white;     
+     -moz-box-shadow: 0px 0px 15px rgba(0, 148, 255, 0.7);
+     -webkit-box-shadow: 0px 0px 15px rgba(0, 148, 255, 0.7);
+     box-shadow: 0px 0px 15px rgba(0, 148, 255, 0.7);
+}

@@ -1,0 +1,109 @@
+// socket.io specific code
+      var socket = io.connect('http://192.168.1.138:8080');
+
+      socket.on('connect', function () {
+        $('#chat').addClass('connected');
+        /*$('#send-message').show();*/
+      });
+
+      socket.on('announcement', function (msg) {
+        $('#lines').append($('<p>').append($('<em>').text(msg)));
+      });
+
+      socket.on('nicknames', function (nicknames) {
+      /*  $('#nicknames').empty().append($('<span><b>Who is online: </b></span><br>'));*/
+        for (var i in nicknames) {
+          $('#nicknames').append($('<a>').text(nicknames[i]));
+          $('#nicknames').append($('<br>'));
+        }
+      });
+
+      socket.on('user message', message);
+      socket.on('reconnect', function () {
+        $('#lines').remove();
+        message('System', 'Reconnected to the server');
+      });
+
+      socket.on('reconnecting', function () {
+        message('System', 'Attempting to re-connect to the server');
+      });
+
+      socket.on('error', function (e) {
+        message('System', e ? e : 'A unknown error occurred');
+      });
+
+      function message (from, msg) {
+        $('#lines').append($('<p>').append($('<b>').text(from), msg));
+      }
+
+      // dom manipulation
+      $(function () {
+        $('#messages').hide();
+        $('#send-message').hide();
+        $('#message').addClass("idleField");
+        $('#message').focus(function() {
+          $('#messages').show();
+          $(this).removeClass("idleField").addClass("focusField");
+          if (this.value == this.defaultValue){
+            this.value = '';
+          }
+          if(this.value != this.defaultValue){
+            this.select();
+          }
+        });
+        $('#message').blur(function() {
+          $('#messages').hide();
+          $(this).removeClass("focusField").addClass("idleField");
+          if ($.trim(this.value == '')){
+            this.value = (this.defaultValue ? this.defaultValue : '');
+          }
+       });  
+
+        $('#nick').addClass("idleField");
+        $('#nick').focus(function() {          
+          $(this).removeClass("idleField").addClass("focusField");
+          if (this.value == this.defaultValue){
+            this.value = '';
+          }
+          if(this.value != this.defaultValue){
+            this.select();
+          }
+        });
+        $('#nick').blur(function() {         
+          $(this).removeClass("focusField").addClass("idleField");
+          if ($.trim(this.value == '')){
+            this.value = (this.defaultValue ? this.defaultValue : '');
+          }
+       });    
+
+        $('#set-nickname').submit(function (ev) {          
+            socket.emit('nickname', $('#nick').val(), function (set) {
+              if($('#nick').val()==0){
+                $('#nickname-err').html('Please leave some letter');
+                $('#nickname-err').css('visibility', 'visible');                
+                return false;
+              }
+              if (!set) {
+              clear();
+              $('#send-message').show();
+              $('#messages').hide();
+              return $('#chat').addClass('nickname-set');
+            }
+            $('#nickname-err').html('Nickname already in use');
+            $('#nickname-err').css('visibility', 'visible');
+          });
+          return false;
+        });
+
+        $('#send-message').submit(function () {
+          message('me:', $('#message').val());
+          socket.emit('user message', $('#message').val());
+          clear();
+          $('#lines').get(0).scrollTop = 10000000;
+          return false;
+        });
+
+        function clear () {
+          $('#message').val('').focus();
+        };
+      });
